@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>فواتير المشتريات - المحاسب الشامل</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">المحاسب الشامل</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">الرئيسية</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                المخزون
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="items.html">الأصناف</a></li>
+                <li><a class="dropdown-item" href="#">رصيد أول المدة</a></li>
+                <li><a class="dropdown-item" href="#">التحويل المخزني</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                المبيعات
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="sales.html">فواتير المبيعات</a></li>
+                <li><a class="dropdown-item" href="#">مردودات المبيعات</a></li>
+                <li><a class="dropdown-item" href="#">العملاء</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown">
+                المشتريات
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item active" href="purchases.html">فواتير المشتريات</a></li>
+                <li><a class="dropdown-item" href="#">مردودات المشتريات</a></li>
+                <li><a class="dropdown-item" href="#">الموردين</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                الحسابات
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="accounts.html">دليل الحسابات</a></li>
+                <li><a class="dropdown-item" href="#">قيود اليومية</a></li>
+                <li><a class="dropdown-item" href="#">سندات القبض</a></li>
+                <li><a class="dropdown-item" href="#">سندات الصرف</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                التقارير
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">تقارير المخزون</a></li>
+                <li><a class="dropdown-item" href="#">تقارير المبيعات</a></li>
+                <li><a class="dropdown-item" href="#">تقارير المشتريات</a></li>
+                <li><a class="dropdown-item" href="#">التقارير المالية</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                <i class="fas fa-user"></i> مستخدم النظام
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#">الملف الشخصي</a></li>
+                <li><a class="dropdown-item" href="#">لوحة التحكم</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="login.html">تسجيل الخروج</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="py-4">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>فواتير المشتريات</h1>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPurchaseModal">
+          <i class="fas fa-plus"></i> فاتورة جديدة
+        </button>
+      </div>
+      
+      <!-- Search and Filter -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="row g-3">
+            <div class="col-md-3">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="بحث برقم الفاتورة...">
+                <button class="btn btn-outline-secondary" type="button">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <select class="form-select">
+                <option selected>جميع الموردين</option>
+                <option>شركة التقنية</option>
+                <option>مؤسسة الإمداد</option>
+                <option>شركة الإنتاج</option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <input type="date" class="form-control" placeholder="من تاريخ">
+            </div>
+            <div class="col-md-2">
+              <input type="date" class="form-control" placeholder="إلى تاريخ">
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-outline-primary w-100">تطبيق</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Purchases Table -->
+      <div class="card">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>رقم الفاتورة</th>
+                  <th>التاريخ</th>
+                  <th>المورد</th>
+                  <th>عدد الأصناف</th>
+                  <th>الإجمالي</th>
+                  <th>الضريبة</th>
+                  <th>الصافي</th>
+                  <th>الحالة</th>
+                  <th>الإجراءات</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>PO-2001</td>
+                  <td>2025/04/20</td>
+                  <td>شركة التقنية</td>
+                  <td>2</td>
+                  <td>2,380.95 ر.س</td>
+                  <td>119.05 ر.س</td>
+                  <td>2,500.00 ر.س</td>
+                  <td><span class="badge bg-success">مدفوعة</span></td>
+                  <td>
+                    <div class="btn-group btn-group-sm">
+                      <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#viewPurchaseModal">
+                        <i class="fas fa-eye"></i>
+                      </button>
+                      <button class="btn btn-warning">
+                        <i class="fas fa-print"></i>
+                      </button>
+                      <button class="btn btn-danger">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>PO-2002</td>
+                  <td>2025/04/17</td>
+                  <td>مؤسسة الإمداد</td>
+                  <td>3</td>
+                  <td>3,047.62 ر.س</td>
+                  <td>152.38 ر.س</td>
+                  <td>3,200.00 ر.س</td>
+                  <td><span class="badge bg-warning">جزئية</span></td>
+                  <td>
+                    <div class="btn-group btn-group-sm">
+                      <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#viewPurchaseModal">
+                        <i class="fas fa-eye"></i>
+                      </button>
+                      <button class="btn btn-warning">
+                        <i class="fas fa-print"></i>
+                      </button>
+                      <button class="btn btn-danger">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>PO-2003</td>
+                  <td>2025/04/15</td>
+                  <td>شركة الإنتاج</td>
+                  <td>1</td>
+                  <td>1,714.29 ر.س</td>
+                  <td>85.71 ر.س</td>
+                  <td>1,800.00 ر.س</td>
+                  <td><span class="badge bg-danger">غير مدفوعة</span></td>
+                  <td>
+                    <div class="btn-group btn-group-sm">
+                      <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#viewPurchaseModal">
+                        <i class="fas fa-eye"></i>
+                      </button>
+                      <button class="btn btn-warning">
+                        <i class="fas fa-print"></i>
+                      </button>
+                      <button class="btn btn-danger">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>PO-2004</td>
+                  <td>2025/04/12</td>
+                  <td>شركة التقنية</td>
+                  <td>2</td>
+                  <td>952.38 ر.س</td>
+                  <td>47.62 ر.س</td>
+                  <td>1,000.00 ر.س</td>
+                  <td><span class="badge bg-success">مدفوعة</span></td>
+                  <td>
+                    <div class="btn-group btn-group-sm">
+                      <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#viewPurchaseModal">
+                        <i class="fas fa-eye"></i>
+                      </button>
+                      <button class="btn btn-warning">
+                        <i class="fas fa-print"></i>
+                      </button>
+                      <button class="btn btn-danger">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>PO-2005</td>
+                  <td>2025/04/10</td>
+                  <td>مؤسسة الإمداد</td>
+                  <td>3</td>
+                  <td>4,761.90 ر.س</td>
+                  <td>238.10 ر.س</td>
+                  <td>5,000.00 ر.س</td>
+                  <td><span class="badge bg-success">مدفوعة</span></td>
+                  <td>
+                    <div class="btn-group btn-group-sm">
+                      <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#viewPurchaseModal">
+                        <i class="fas fa-eye"></i>
+                      </button>
+                      <button class="btn btn-warning">
+                        <i class="fas fa-print"></i>
+                      </button>
+                      <button class="btn btn-danger">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <!-- Pagination -->
+          <nav>
+            <ul class="pagination justify-content-center">
+              <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">السابق</a>
+              </li>
+              <li class="page-item active"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#">التالي</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Add Purchase Modal -->
+  <div class="modal fade" id="addPurchaseModal" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">فاتورة مشتريات جديدة</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="row mb-3">
+              <div class="col-md-3">
+                <label class="form-label">رقم الفاتورة</label>
+                <input type="text" class="form-control" placeholder="سيتم إنشاؤه تلقائياً" disabled>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">التاريخ *</label>
+                <input type="date" class="form-control" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">المورد *</label>
+                <select class="form-select" required>
+                  <option selected disabled value="">اختر المورد</option>
+                  <option>شركة التقنية</option>
+                  <option>مؤسسة الإمداد</option>
+                  <option>شركة الإنتاج</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="row mb-3">
+              <div class="col-md-12">
+                <label class="form-label">ملاحظات</label>
+                <textarea class="form-control" rows="2"></textarea>
+              </div>
+            </div>
+            
+            <h5 class="mb-3">الأصناف</h5>
+            
+            <div class="table-responsive mb-3">
+              <table class="table table-bordered" id="purchaseItemsTable">
+                <thead class="table-light">
+                  <tr>
+                    <th style="width: 5%">#</th>
+                    <th style="width: 30%">الصنف</th>
+                    <th style="width: 10%">الوحدة</th>
+                    <th style="width: 10%">الكمية</th>
+                    <th style="width: 15%">السعر</th>
+                    <th style="width: 15%">الإجمالي</th>
+                    <th style="width: 15%">الإجراءات</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>
+                      <select class="form-select">
+                        <option selected disabled value="">اختر الصنف</option>
+                        <option>جهاز كمبيوتر</option>
+                        <option>طابعة</option>
+                        <option>ماوس</option>
+                        <option>كيبورد</option>
+                        <option>شاشة كمبيوتر</option>
+                      </select>
+                    </td>
+                    <td>قطعة</td>
+                    <td>
+                      <input type="number" class="form-control" value="1" min="1">
+                    </td>
+                    <td>
+                      <div class="input-group">
+                        <input type="number" class="form-control" value="1500">
+                        <span class="input-group-text">ر.س</span>
+                      </div>
+                    </td>
+                    <td>1,500.00 ر.س</td>
+                    <td>
+                      <button type="button" class="btn btn-sm btn-danger">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="7">
+                      <button type="button" class="btn btn-sm btn-success">
+                        <i class="fas fa-plus"></i> إضافة صنف
+                      </button>
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-7">
+                <div class="mb-3">
+                  <label class="form-label">طريقة الدفع</label>
+                  <select class="form-select">
+                    <option>نقداً</option>
+                    <option>شيك</option>
+                    <option>تحويل بنكي</option>
+                    <option>آجل</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">حالة الدفع</label>
+                  <select class="form-select">
+                    <option>مدفوعة</option>
+                    <option>جزئية</option>
+                    <option>غير مدفوعة</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">المبلغ المدفوع</label>
+                  <div class="input-group">
+                    <input type="number" class="form-control" value="0">
+                    <span class="input-group-text">ر.س</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between mb-2">
+                      <span>الإجمالي:</span>
+                      <strong>1,500.00 ر.س</strong>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                      <span>الخصم:</span>
+                      <strong>0.00 ر.س</strong>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                      <span>الضريبة (5%):</span>
+                      <strong>75.00 ر.س</strong>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between mb-2">
+                      <span>الإجمالي النهائي:</span>
+                      <strong class="text-primary">1,575.00 ر.س</strong>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                      <span>المبلغ المدفوع:</span>
+                      <strong>0.00 ر.س</strong>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                      <span>المبلغ المتبقي:</span>
+                      <strong class="text-danger">1,575.00 ر.س</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+          <button type="button" class="btn btn-primary">حفظ الفاتورة</button>
+          <button type="button" class="btn btn-success">حفظ وطباعة</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- View Purchase Modal -->
+  <div class="modal fade" id="viewPurchaseModal" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">تفاصيل الفاتورة</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row mb-4">
+            <div class="col-md-6">
+              <h4>فاتورة مشتريات #PO-2001</h4>
+              <p class="text-muted">تاريخ الفاتورة: 2025/04/20</p>
+              <p><strong>المورد:</strong> شركة التقنية</p>
+              <p><strong>العنوان:</strong> 

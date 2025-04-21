@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إدارة الأصناف - المحاسب الشامل</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">المحاسب الشامل</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">الرئيسية</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown">
+                المخزون
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item active" href="items.html">الأصناف</a></li>
+                <li><a class="dropdown-item" href="#">رصيد أول المدة</a></li>
+                <li><a class="dropdown-item" href="#">التحويل المخزني</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                المبيعات
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="sales.html">فواتير المبيعات</a></li>
+                <li><a class="dropdown-item" href="#">مردودات المبيعات</a></li>
+                <li><a class="dropdown-item" href="#">العملاء</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                المشتريات
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="purchases.html">فواتير المشتريات</a></li>
+                <li><a class="dropdown-item" href="#">مردودات المشتريات</a></li>
+                <li><a class="dropdown-item" href="#">الموردين</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                الحسابات
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="accounts.html">دليل الحسابات</a></li>
+                <li><a class="dropdown-item" href="#">قيود اليومية</a></li>
+                <li><a class="dropdown-item" href="#">سندات القبض</a></li>
+                <li><a class="dropdown-item" href="#">سندات الصرف</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                التقارير
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">تقارير المخزون</a></li>
+                <li><a class="dropdown-item" href="#">تقارير المبيعات</a></li>
+                <li><a class="dropdown-item" href="#">تقارير المشتريات</a></li>
+                <li><a class="dropdown-item" href="#">التقارير المالية</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                <i class="fas fa-user"></i> مستخدم النظام
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#">الملف الشخصي</a></li>
+                <li><a class="dropdown-item" href="#">لوحة التحكم</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="login.html">تسجيل الخروج</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="py-4">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>إدارة الأصناف</h1>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addItemModal">
+          <i class="fas fa-plus"></i> إضافة صنف جديد
+        </button>
+      </div>
+      
+      <!-- Search and Filter -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="row g-3">
+            <div class="col-md-4">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="بحث عن صنف...">
+                <button class="btn btn-outline-secondary" type="button">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <select class="form-select">
+                <option selected>جميع المجموعات</option>
+                <option>أجهزة كمبيوتر</option>
+                <option>طابعات</option>
+                <option>ملحقات</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <select class="form-select">
+                <option selected>جميع الحالات</option>
+                <option>متوفر</option>
+                <option>منخفض</option>
+                <option>نفذت الكمية</option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-outline-primary w-100">تطبيق</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Items Table -->
+      <div class="card">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>كود الصنف</th>
+                  <th>اسم الصنف</th>
+                  <th>المجموعة</th>
+                  <th>سعر البيع</th>
+                  <th>سعر الشراء</th>
+                  <th>الكمية المتاحة</th>
+                  <th>الحالة</th>
+                  <th>الإجراءات</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>ITM-001</td>
+                  <td>جهاز كمبيوتر</td>
+                  <td>أجهزة كمبيوتر</td>
+                  <td>1,800 ر.س</td>
+                  <td>1,500 ر.س</td>
+                  <td>12</td>
+                  <td><span class="badge bg-success">متوفر</span></td>
+                  <td>
+                    <div class="btn-group btn-group-sm">
+                      <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#viewItemModal">
+                        <i class="fas fa-eye"></i>
+                      </button>
+                      <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editItemModal">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="btn btn-danger">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>ITM-002</td>
+                  <td>طابعة</td>
+                  <td>طابعات</td>
+                  <td>650 ر.س</td>
+                  <td>500 ر.س</td>
+                  <td>3</td>
+                  <td><span class="badge bg-warning">منخفض</span></td>
+                  <td>
+                    <div class="btn-group btn-group-sm">
+                      <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#viewItemModal">
+                        <i class="fas fa-eye"></i>
+                      </button>
+                      <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editItemModal">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="btn btn-danger">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>ITM-003</td>
+                  <td>ماوس</td>
+                  <td>ملحقات</td>
+                  <td>75 ر.س</td>
+                  <td>50 ر.س</td>
+                  <td>0</td>
+                  <td><span class="badge bg-danger">نفذت الكمية</span></td>
+                  <td>
+                    <div class="btn-group btn-group-sm">
+                      <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#viewItemModal">
+                        <i class="fas fa-eye"></i>
+                      </button>
+                      <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editItemModal">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="btn btn-danger">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>ITM-004</td>
+                  <td>كيبورد</td>
+                  <td>ملحقات</td>
+                  <td>120 ر.س</td>
+                  <td>90 ر.س</td>
+                  <td>15</td>
+                  <td><span class="badge bg-success">متوفر</span></td>
+                  <td>
+                    <div class="btn-group btn-group-sm">
+                      <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#viewItemModal">
+                        <i class="fas fa-eye"></i>
+                      </button>
+                      <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editItemModal">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="btn btn-danger">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>ITM-005</td>
+                  <td>شاشة كمبيوتر</td>
+                  <td>ملحقات</td>
+                  <td>450 ر.س</td>
+                  <td>350 ر.س</td>
+                  <td>7</td>
+                  <td><span class="badge bg-success">متوفر</span></td>
+                  <td>
+                    <div class="btn-group btn-group-sm">
+                      <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#viewItemModal">
+                        <i class="fas fa-eye"></i>
+                      </button>
+                      <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editItemModal">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="btn btn-danger">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <!-- Pagination -->
+          <nav>
+            <ul class="pagination justify-content-center">
+              <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">السابق</a>
+              </li>
+              <li class="page-item active"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#">التالي</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Add Item Modal -->
+  <div class="modal fade" id="addItemModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">إضافة صنف جديد</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label class="form-label">كود الصنف</label>
+                <input type="text" class="form-control" placeholder="سيتم إنشاؤه تلقائياً" disabled>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">اسم الصنف *</label>
+                <input type="text" class="form-control" required>
+              </div>
+            </div>
+            
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label class="form-label">المجموعة *</label>
+                <select class="form-select" required>
+                  <option selected disabled value="">اختر المجموعة</option>
+                  <option>أجهزة كمبيوتر</option>
+                  <option>طابعات</option>
+                  <option>ملحقات</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">الوحدة *</label>
+                <select class="form-select" required>
+                  <option selected disabled value="">اختر الوحدة</option>
+                  <option>قطعة</option>
+                  <option>صندوق</option>
+                  <option>كرتون</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label class="form-label">سعر البيع *</label>
+                <div class="input-group">
+                  <input type="number" class="form-control" required>
+                  <span class="input-group-text">ر.س</span>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">سعر الشراء *</label>
+                <div class="input-group">
+                  <input type="number" class="form-control" required>
+                  <span class="input-group-text">ر.س</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label class="form-label">الكمية الافتتاحية</label>
+                <input type="number" class="form-control">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">حد الطلب</label>
+                <input type="number" class="form-control">
+              </div>
+            </div>
+            
+            <div class="mb-3">
+              <label class="form-label">الوصف</label>
+              <textarea class="form-control" rows="3"></textarea>
+            </div>
+            
+            <div class="mb-3">
+              <label class="form-label">صورة الصنف</label>
+              <input type="file" class="form-control">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+          <button type="button" class="btn btn-primary">حفظ</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- View Item Modal -->
+  <div class="modal fade" id="viewItemModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">تفاصيل الصنف</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-4 text-center mb-3">
+              <img src="https://via.placeholder.com/200" class="img-fluid rounded" alt="صورة الصنف">
+            </div>
+            <div class="col-md-8">
+              <h4>جهاز كمبيوتر</h4>
+              <p class="text-muted">كود الصنف: ITM-001</p>
+              
+              <div class="row mb-2">
+                <div class="col-md-6">
+                  <strong>المجموعة:</strong> أجهزة كمبيوتر
+                </div>
+                <div class="col-md-6">
+                  <strong>الوحدة:</strong> قطعة
+                </div>
+              </div>
+              
+              <div class="row mb-2">
+                <div class="col-md-6">
+                  <strong>سعر البيع:</strong> 1,800 ر.س
+                </div>
+                <div class="col-md-6">
+                  <strong>سعر الشراء:</strong> 1,500 ر.س
+                </div>
+              </div>
+              
+              <div class="row mb-2">
+                <div class="col-md-6">
+                  <strong>الكمية المتاحة:</strong> 12
+                </div>
+                <div class="col-md-6">
+                  <strong>حد الطلب:</strong> 5
+                </div>
+              </div>
+              
+              <div class="mb-2">
+                <strong>الوصف:</strong>
+                <p>جهاز كمبيوتر مكتبي بمواصفات عالية، معالج i7، ذاكرة 16 جيجابايت، قرص صلب 1 تيرابايت.</p>
+              </div>
+            </div>
+          </div>
+          
+          <hr>
+          
+          <h5>حركة الصنف</h5>
+          <div class="table-responsive">
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <th>التاريخ</th>
+                  <th>نوع الحركة</th>
+                  <th>المستند</th>
+                  <th>الكمية</th>
+                  <th>الرصيد</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>2025/04/01</td>
+                  <td>رصيد افتتاحي</td>
+                  <td>-</td>
+                  <td>10</td>
+                  <td>10</td>
+                </tr>
+                <tr>
+                  <td>2025/04/10</td>
+                  <td>مشتريات</td>
+                  <td>PO-2001</td>
+                  <td>5</td>
+                  <td>15</td>
+                </tr>
+                <tr>
+                  <td>2025/04/15</td>
+                  <td>مبيعات</td>
+                  <td>INV-1001</td>
+                  <td>-3</td>
+                  <td>12</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Item Modal -->
+  <div class="modal fade" id="editItemModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">تعديل الصنف</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label class="form-label">كود الصنف</label>
+                <input type="text" class="form-control" value="ITM-001" disabled>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">اسم الصنف *</label>
+                <input type="text" class="form-control" value="جهاز كمبيوتر" required>
+         
